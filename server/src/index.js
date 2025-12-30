@@ -9,7 +9,7 @@ import productOrdersRouter from "./routes/productOrders.js";
 import cartRouter from "./routes/cart.js";
 import discountUsageRouter from "./routes/discountUsage.js";
 import { errorHandler } from "./middleware/errorHandler.js";
-import { PORT } from "./config/env.js";
+// import { PORT } from "./config/env.js";
 
 dotenv.config();
 
@@ -32,6 +32,11 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-    console.log(`API listening on port ${PORT}`);
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+    console.log(`API listening on port ${port}`);
 });
+
+// app.listen(PORT, () => {
+//     console.log(`API listening on port ${PORT}`);
+// });
