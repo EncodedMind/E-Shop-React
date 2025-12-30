@@ -1,6 +1,0 @@
-[
-  { "username": "admin1", "password": "pass1", "isAdmin": true },
-  { "username": "admin2", "password": "pass2", "isAdmin": true },
-  { "username": "user1", "password": "pass1", "isAdmin": false },
-  { "username": "user2", "password": "pass2", "isAdmin": false }
-]

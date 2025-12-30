@@ -1,0 +1,137 @@
+[
+  {
+    "title": "Tomato",
+    "description": "A healthy vegetable",
+    "category": "Food",
+    "subcategory": "Vegetable",
+    "price": 2,
+    "measurementType": "Kg",
+    "amount": 100
+  },
+  {
+    "title": "Tablet",
+    "description": "Ideal for reading and light work",
+    "category": "Tech",
+    "subcategory": "Tablet",
+    "price": 600,
+    "measurementType": "Unit",
+    "amount": 25
+  },
+  {
+    "title": "Bad Smartphone",
+    "description": "Latest model with advanced features",
+    "category": "Tech",
+    "subcategory": "Phone",
+    "price": 800,
+    "measurementType": "Unit",
+    "amount": 40
+  },
+  {
+    "title": "Detective Story",
+    "description": "An intriguing mystery novel",
+    "category": "Book",
+    "subcategory": "Mystery",
+    "price": 12,
+    "measurementType": "Unit",
+    "amount": 45
+  },
+  {
+    "title": "Romantic Saga",
+    "description": "A timeless romance novel",
+    "category": "Book",
+    "subcategory": "Romance",
+    "price": 9.99,
+    "measurementType": "Unit",
+    "amount": 60
+  },
+  {
+    "title": "Baseball Cap",
+    "description": "A trendy headwear",
+    "category": "Clothing",
+    "subcategory": "Hat",
+    "price": 8,
+    "measurementType": "Unit",
+    "amount": 100
+  },
+  {
+    "title": "Bottle of Beer",
+    "description": "A refreshing alcoholic beverage",
+    "category": "Drink",
+    "subcategory": "Alcohol",
+    "price": 2.5,
+    "measurementType": "Unit",
+    "amount": 60
+  },
+  {
+    "title": "Apple",
+    "description": "A healthy fruit",
+    "category": "Food",
+    "subcategory": "Fruit",
+    "price": 1.8,
+    "measurementType": "Kg",
+    "amount": 100
+  },
+  {
+    "title": "Can of Orange Juice",
+    "description": "Fresh and delicious",
+    "category": "Drink",
+    "subcategory": "Juice",
+    "price": 3.5,
+    "measurementType": "Unit",
+    "amount": 40
+  },
+  {
+    "title": "T-Shirt",
+    "description": "Casual and comfortable",
+    "category": "Clothing",
+    "subcategory": "Shirt",
+    "price": 10,
+    "measurementType": "Unit",
+    "amount": 80
+  },
+  {
+    "title": "Laptop",
+    "description": "A high-performance computer",
+    "category": "Tech",
+    "subcategory": "Laptop",
+    "price": 1200,
+    "measurementType": "Unit",
+    "amount": 20
+  },
+  {
+    "title": "Chicken Breast",
+    "description": "Fresh and lean meat",
+    "category": "Food",
+    "subcategory": "Meat",
+    "price": 5.5,
+    "measurementType": "Kg",
+    "amount": 50
+  },
+  {
+    "title": "Latte Beans",
+    "description": "A creamy coffee drink",
+    "category": "Drink",
+    "subcategory": "Coffee",
+    "price": 4,
+    "measurementType": "Kg",
+    "amount": 30
+  },
+  {
+    "title": "Jeans",
+    "description": "Stylish denim pants",
+    "category": "Clothing",
+    "subcategory": "Pant",
+    "price": 20,
+    "measurementType": "Unit",
+    "amount": 50
+  },
+  {
+    "title": "Space Odyssey",
+    "description": "An epic sci-fi tale",
+    "category": "Book",
+    "subcategory": "Sci-Fi",
+    "price": 15,
+    "measurementType": "Unit",
+    "amount": 30
+  }
+]
