@@ -1,0 +1,29 @@
+Welcome to the e-shop!!!
+Do you want to login or register? (enter option): **login**
+Please enter your username: **admin1**
+Please enter your password: **pass1**
+Welcome admin1!
+---Admin Menu---
+1. Add Product
+2. Edit Product
+3. Remove Product
+4. Search Product
+5. Show Unavailable Products
+6. Show Top 5 Products
+7. Exit
+Enter your choice: **2**
+Enter product title you wish to edit: **Apple**
+Enter number of field you want to edit: 1.Title 2.Description 3.Category and Subcategory 4.Price 5.Available Kg 6.Nothing
+**1**
+Enter new title: **Dummy Apple**
+Product updated!
+---Admin Menu---
+1. Add Product
+2. Edit Product
+3. Remove Product
+4. Search Product
+5. Show Unavailable Products
+6. Show Top 5 Products
+7. Exit
+Enter your choice: **7**
+Goodbye!

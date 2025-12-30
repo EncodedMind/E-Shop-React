@@ -1,0 +1,59 @@
+Welcome to the e-shop!!!
+Do you want to login or register? (enter option): **login**
+Please enter your username: **user1**
+Please enter your password: **pass1**
+
+Welcome user1!
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **2**
+Which product do you want to add? **Romantic Saga**
+Enter quantity: **2**
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **7**
+
+---CART START---
+2 Romantic Saga
+---CART END---
+Total Cost: 19.98
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **5**
+Order Completed!
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **8**
+Goodbye!

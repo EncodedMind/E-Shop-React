@@ -1,0 +1,7 @@
+{
+  "Food": ["Fruit", "Vegetable", "Meat", "Seafood", "Dairy", "Sweet", "Baked"],
+  "Drink": ["Juice", "Soft Drink", "Coffee", "Tea", "Dairy", "Alcohol"],
+  "Clothing": ["Shirt", "Pant", "Hat", "Shoe"],
+  "Book": ["Mystery", "Sci-Fi", "Romance", "Comedy", "Academic", "Comic"],
+  "Tech": ["Computer", "Laptop", "Phone", "Tablet"]
+}

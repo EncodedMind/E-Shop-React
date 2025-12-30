@@ -1,0 +1,131 @@
+Welcome to the e-shop!!!
+Do you want to login or register? (enter option): **login**
+Please enter your username: **user2**
+Please enter your password: **pass2**
+
+Welcome user2!
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **1**
+
+Product Search Options:
+1. Search for a specific product (by title).
+2. View the products of a specific category.
+3. Show all the available products.
+**3**
+Results: "Baseball Cap" "Bottle of Beer" "Space Odyssey" "Romantic Saga" "Tablet" "Smartphone" "Detective Story" "Tomato" "Apple" "Can of Orange Juice" "T-Shirt" "Laptop" "Chicken Breast" "Latte Beans" "Jeans" 
+Select a product title: **Space Odyssey**
+-----Space Odyssey-----
+Description: An epic sci-fi tale
+Category: Book
+Subcategory: Sci-Fi
+Price per unit: 15€
+Total units available: 30
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **2**
+Which product do you want to add? **Space Odyssey**
+Enter quantity: **1**
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **7**
+
+---CART START---
+1 Space Odyssey
+---CART END---
+Total Cost: 15
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **3**
+Which product do you want to update? **Space Odyssey**
+Enter new quantity: **3**
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **7**
+
+---CART START---
+3 Space Odyssey
+---CART END---
+Total Cost: 45
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **6**
+---CART 1 START---
+2 Smartphone
+2 Tablet
+---CART 1 END---
+Total Cost: 2800
+
+---CART 2 START---
+4 Space Odyssey
+10 Romantic Saga
+---CART 2 END---
+Total Cost: 159.9
+
+---CART 3 START---
+10 Chicken Breast
+3 Tomato
+8 Apple
+1 Jeans
+---CART 3 END---
+Total Cost: 95.4
+
+---Customer Menu---
+1. Search for a product
+2. Add product to cart
+3. Update product from cart
+4. Remove product from cart
+5. Complete order
+6. View order history
+7. View cart
+8. Exit
+Enter your choice: **8**
+Goodbye!
