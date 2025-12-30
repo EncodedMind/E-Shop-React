@@ -50,38 +50,46 @@ const RemoveProduct = () => {
     };
 
     return (
-        <div>
-        <h2>Remove Product</h2>
-        <p>Choose product title you wish to remove:</p>
+        <div className="card">
+            <div className="card-header">
+                <h2>Remove Product</h2>
+                <p>Choose product title you wish to remove:</p>
+            </div>
+            <div className="card-body">
+                {loading ? (
+                    <div className="loading">Loading products...</div>
+                ) : (
+                    <>
+                        <div className="form-group">
+                            <label>Select product:</label>
+                            <select
+                                value={selectedTitle}
+                                onChange={(e) => {
+                                    setSelectedTitle(e.target.value);
+                                    setSuccess(false);
+                                }}
+                            >
+                                <option value="" disabled>
+                                    Select a product to remove
+                                </option>
+                                {products.map((p) => (
+                                    <option key={p.title} value={p.title}>
+                                        {p.title}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
 
-        {loading ? (
-            <p>Loading products...</p>
-        ) : (
-        <select
-            value={selectedTitle}
-            onChange={(e) => {
-            setSelectedTitle(e.target.value);
-            setSuccess(false);
-            }}
-        >
-            <option value="" disabled>
-                Select a product to remove
-            </option>
-            {products.map((p) => (
-            <option key={p.title} value={p.title}>
-                {p.title}
-            </option>
-            ))}
-        </select>
-        )}
+                        {selectedTitle && (
+                            <form onSubmit={handleRemove}>
+                                <button type="submit" className="button button-danger">Remove Product</button>
+                            </form>
+                        )}
 
-        {selectedTitle && (
-            <form onSubmit={handleRemove} style={{ marginTop: "10px" }}>
-            <button type="submit">Remove Product</button>
-            </form>
-        )}
-
-        {success && <p style={{ color: "green" }}>Product removed!</p>}
+                        {success && <div className="alert alert-success">Product removed!</div>}
+                    </>
+                )}
+            </div>
         </div>
     );
 };

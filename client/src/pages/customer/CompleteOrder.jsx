@@ -241,101 +241,124 @@ const CompleteOrder = () => {
 
     if (loading) {
         return (
-            <div>
-                <h2>Complete Order</h2>
-                <p>Loading...</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Complete Order</h2>
+                </div>
+                <div className="card-body">
+                    <div className="loading">Loading...</div>
+                </div>
             </div>
         );
     }
 
     if (cart.length === 0 && !orderPlaced) {
         return (
-            <div>
-                <h2>Complete Order</h2>
-                <p>Your cart is empty.</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Complete Order</h2>
+                </div>
+                <div className="card-body">
+                    <div className="alert alert-info">Your cart is empty.</div>
+                </div>
             </div>
         );
     }
 
     if (orderPlaced) {
         return (
-            <div>
-                <h2>Complete Order</h2>
-                <p style={{ color: "green", fontSize: "18px" }}>{message}</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Complete Order</h2>
+                </div>
+                <div className="card-body">
+                    <div className="alert alert-success">
+                        {message}
+                    </div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Complete Order</h2>
-            <table style={{ marginTop: "15px", width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                    <tr style={{ backgroundColor: "#f0f0f0" }}>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Product</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Quantity</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Base Price</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Discount</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Final Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orderDetails.items.map((item, idx) => (
-                        <tr key={idx}>
-                            <td
-                                style={{ border: "1px solid #ccc", padding: "8px", position: "relative", cursor: "pointer" }}
-                                onMouseEnter={() => setHoveredIdx(idx)}
-                                onMouseLeave={() => setHoveredIdx(null)}
-                            >
-                                {item.title}
-                                {hoveredIdx === idx && (
-                                    <div
-                                        style={{
-                                            position: "absolute",
-                                            top: "100%",
-                                            left: "0",
-                                            backgroundColor: "#fff",
-                                            border: "1px solid #ccc",
-                                            padding: "8px",
-                                            borderRadius: "4px",
-                                            zIndex: 10,
-                                            minWidth: "200px",
-                                            boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                                        }}
-                                    >
-                                        <strong>Description:</strong>
-                                        <p style={{ margin: "4px 0 0 0", fontSize: "12px" }}>{item.description}</p>
-                                    </div>
-                                )}
-                            </td>
-                            <td style={{ border: "1px solid #ccc", padding: "8px" }}>
-                                {item.amount} {item.measurementType}
-                            </td>
-                            <td style={{ border: "1px solid #ccc", padding: "8px" }}>${item.basePrice.toFixed(2)}</td>
-                            <td style={{ border: "1px solid #ccc", padding: "8px" }}>
-                                {item.appliedDiscount > 0 ? (
-                                    <span style={{ color: "green" }}>
-                                        {(item.appliedDiscount * 100).toFixed(0)}% off
-                                    </span>
-                                ) : (
-                                    "-"
-                                )}
-                            </td>
-                            <td style={{ border: "1px solid #ccc", padding: "8px" }}>${item.finalPrice.toFixed(2)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <div style={{ marginTop: "20px", textAlign: "right" }}>
-                <h3>Total: ${orderDetails.totalCost.toFixed(2)}</h3>
+        <div className="card">
+            <div className="card-header">
+                <h2>Complete Order</h2>
             </div>
+            <div className="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Base Price</th>
+                            <th>Discount</th>
+                            <th>Final Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orderDetails.items.map((item, idx) => (
+                            <tr key={idx}>
+                                <td
+                                    style={{ position: "relative", cursor: "pointer" }}
+                                    onMouseEnter={() => setHoveredIdx(idx)}
+                                    onMouseLeave={() => setHoveredIdx(null)}
+                                >
+                                    {item.title}
+                                    {hoveredIdx === idx && (
+                                        <div
+                                            className="tooltip"
+                                            style={{
+                                                position: "absolute",
+                                                top: "100%",
+                                                left: "0",
+                                                backgroundColor: "#fff",
+                                                border: "1px solid var(--border-color)",
+                                                padding: "var(--space-2)",
+                                                borderRadius: "var(--radius)",
+                                                zIndex: 10,
+                                                minWidth: "200px",
+                                                boxShadow: "var(--shadow-md)",
+                                            }}
+                                        >
+                                            <strong>Description:</strong>
+                                            <p style={{ margin: "4px 0 0 0", fontSize: "12px" }}>{item.description}</p>
+                                        </div>
+                                    )}
+                                </td>
+                                <td>
+                                    {item.amount} {item.measurementType}
+                                </td>
+                                <td>${item.basePrice.toFixed(2)}</td>
+                                <td>
+                                    {item.appliedDiscount > 0 ? (
+                                        <span className="badge badge-success">
+                                            {(item.appliedDiscount * 100).toFixed(0)}% off
+                                        </span>
+                                    ) : (
+                                        "-"
+                                    )}
+                                </td>
+                                <td>${item.finalPrice.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
 
-            <button onClick={handlePlaceOrder} style={{ marginTop: "10px" }}>
-                Place Order
-            </button>
+                <div className="cart-total">
+                    <h3>Total: ${orderDetails.totalCost.toFixed(2)}</h3>
+                </div>
 
-            {message && <p style={{ marginTop: "15px", color: "red" }}>{message}</p>}
+                <button onClick={handlePlaceOrder} className="button button-primary">
+                    Place Order
+                </button>
+
+                {message && (
+                    <div className="alert alert-error">
+                        {message}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

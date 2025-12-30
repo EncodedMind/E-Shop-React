@@ -95,60 +95,67 @@ const RemoveProductFromCart = () => {
 
     if (loading) {
         return (
-            <div>
-                <h2>Remove Product from Cart</h2>
-                <p>Loading...</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Remove Product from Cart</h2>
+                </div>
+                <div className="card-body">
+                    <div className="loading">Loading...</div>
+                </div>
             </div>
         );
     }
 
     if (cart.length === 0) {
         return (
-            <div>
-                <h2>Remove Product from Cart</h2>
-                <p>Your cart is empty.</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Remove Product from Cart</h2>
+                </div>
+                <div className="card-body">
+                    <div className="alert alert-info">Your cart is empty.</div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Remove Product from Cart</h2>
-            <p>Select product you would like to remove:</p>
+        <div className="card">
+            <div className="card-header">
+                <h2>Remove Product from Cart</h2>
+                <p>Select product you would like to remove:</p>
+            </div>
+            <div className="card-body">
+                <form onSubmit={handleRemoveProduct}>
+                    <div className="form-group">
+                        <label>Select product:</label>
+                        <select
+                            value={selectedTitle}
+                            onChange={(e) => {
+                                setSelectedTitle(e.target.value);
+                                setMessage("");
+                            }}
+                        >
+                            <option value="">Choose a product</option>
+                            {cart.map((item) => (
+                                <option key={item.title} value={item.title}>
+                                    {item.title} ({item.amount} {item.measurementType})
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-            <form onSubmit={handleRemoveProduct}>
-                <div style={{ marginBottom: "15px" }}>
-                    <select
-                        value={selectedTitle}
-                        onChange={(e) => {
-                            setSelectedTitle(e.target.value);
-                            setMessage("");
-                        }}
-                    >
-                        <option value="">Choose a product</option>
-                        {cart.map((item) => (
-                            <option key={item.title} value={item.title}>
-                                {item.title} ({item.amount} {item.measurementType})
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                    <button type="submit" className="button button-danger" disabled={!selectedTitle}>
+                        Remove Product
+                    </button>
+                </form>
 
-                <button type="submit" disabled={!selectedTitle}>
-                    Remove Product
-                </button>
-            </form>
-
-            {message && (
-                <p
-                    style={{
-                        marginTop: "15px",
-                        color: messageType === "error" ? "red" : "green",
-                    }}
-                >
-                    {message}
-                </p>
-            )}
+                {message && (
+                    <div className={`alert ${messageType === "error" ? "alert-error" : "alert-success"}`}>
+                        {message}
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

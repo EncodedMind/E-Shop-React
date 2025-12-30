@@ -28,69 +28,81 @@ const ViewCart = () => {
 
     if (cart.length === 0) {
         return (
-            <div>
-                <h3>View Cart</h3>
-                <p>Your cart is empty.</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>View Cart</h2>
+                </div>
+                <div className="card-body text-center">
+                    <p className="text-secondary">Your cart is empty.</p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>View Cart</h2>
-            <table style={{ marginTop: "15px", width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                    <tr style={{ backgroundColor: "#f0f0f0" }}>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Title</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Price per {cart[0]?.measurementType || "Unit"}</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Quantity</th>
-                        <th style={{ border: "1px solid #ccc", padding: "8px" }}>Total Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cart.map((item, idx) => {
-                        const itemTotal = (item.amount || 0) * (item.price || 0);
-                        return (
-                            <tr key={idx}>
-                                <td
-                                    style={{ border: "1px solid #ccc", padding: "8px", position: "relative", cursor: "pointer" }}
-                                    onMouseEnter={() => setHoveredIdx(idx)}
-                                    onMouseLeave={() => setHoveredIdx(null)}
-                                >
-                                    {item.title}
-                                    {hoveredIdx === idx && (
-                                        <div
-                                            style={{
-                                                position: "absolute",
-                                                top: "100%",
-                                                left: "0",
-                                                backgroundColor: "#fff",
-                                                border: "1px solid #ccc",
-                                                padding: "8px",
-                                                borderRadius: "4px",
-                                                zIndex: 10,
-                                                minWidth: "200px",
-                                                boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-                                            }}
-                                        >
-                                            <strong>Description:</strong>
-                                            <p style={{ margin: "4px 0 0 0", fontSize: "12px" }}>{item.description}</p>
-                                        </div>
-                                    )}
-                                </td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>${item.price?.toFixed(2)}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>
-                                    {item.amount} {item.measurementType}
-                                </td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>${itemTotal.toFixed(2)}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+        <div className="card">
+            <div className="card-header">
+                <h2>Your Shopping Cart</h2>
+                <p className="text-secondary">{cart.length} item(s) in your cart</p>
+            </div>
+            <div className="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price per Unit</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {cart.map((item, idx) => {
+                            const itemTotal = (item.amount || 0) * (item.price || 0);
+                            return (
+                                <tr key={idx}>
+                                    <td
+                                        style={{ position: "relative", cursor: "pointer" }}
+                                        onMouseEnter={() => setHoveredIdx(idx)}
+                                        onMouseLeave={() => setHoveredIdx(null)}
+                                    >
+                                        <strong>{item.title}</strong>
+                                        {hoveredIdx === idx && (
+                                            <div
+                                                style={{
+                                                    position: "absolute",
+                                                    top: "100%",
+                                                    left: "0",
+                                                    backgroundColor: "var(--bg-primary)",
+                                                    border: "1px solid var(--border-color)",
+                                                    padding: "var(--spacing-md)",
+                                                    borderRadius: "var(--radius-md)",
+                                                    zIndex: 10,
+                                                    minWidth: "250px",
+                                                    boxShadow: "var(--shadow-lg)",
+                                                }}
+                                            >
+                                                <strong>Description:</strong>
+                                                <p style={{ margin: "4px 0 0 0", fontSize: "0.875rem", color: "var(--text-secondary)" }}>
+                                                    {item.description}
+                                                </p>
+                                            </div>
+                                        )}
+                                    </td>
+                                    <td>${item.price?.toFixed(2)}</td>
+                                    <td>
+                                        {item.amount} {item.measurementType}
+                                    </td>
+                                    <td className="font-bold">${itemTotal.toFixed(2)}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
 
-            <div style={{ marginTop: "20px", textAlign: "right" }}>
-                <h4>Cart Total: ${cartTotal.toFixed(2)}</h4>
+                <div className="flex justify-between items-center mt-xl" style={{ borderTop: '2px solid var(--border-color)', paddingTop: 'var(--spacing-lg)' }}>
+                    <h3 className="text-primary mb-0">Cart Total:</h3>
+                    <h3 className="text-success mb-0">${cartTotal.toFixed(2)}</h3>
+                </div>
             </div>
         </div>
     );

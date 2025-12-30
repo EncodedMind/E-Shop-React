@@ -120,64 +120,78 @@ const UpdateProductInCart = () => {
 
     if (loading) {
         return (
-            <div>
-                <h2>Update Product in Cart</h2>
-                <p>Loading...</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Update Product in Cart</h2>
+                </div>
+                <div className="card-body">
+                    <div className="loading">Loading...</div>
+                </div>
             </div>
         );
     }
 
     if (cart.length === 0) {
         return (
-            <div>
-                <h2>Update Product in Cart</h2>
-                <p>Your cart is empty.</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Update Product in Cart</h2>
+                </div>
+                <div className="card-body">
+                    <div className="alert alert-info">Your cart is empty.</div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Update Product in Cart</h2>
-            <p>Select product to update:</p>
+        <div className="card">
+            <div className="card-header">
+                <h2>Update Product in Cart</h2>
+                <p>Select product to update:</p>
+            </div>
+            <div className="card-body">
+                <form onSubmit={handleUpdateProduct}>
+                    <div className="form-group">
+                        <label>Select product:</label>
+                        <select
+                            value={selectedTitle}
+                            onChange={(e) => {
+                                const title = e.target.value;
+                                setSelectedTitle(title);
+                                setMessage("");
+                                const item = cart.find((i) => i.title === title);
+                                setNewQuantity(item ? item.amount.toString() : "");
+                            }}
+                        >
+                            <option value="">Choose a product</option>
+                            {cart.map((item) => (
+                                <option key={item.title} value={item.title}>
+                                    {item.title} (Current: {item.amount} {item.measurementType})
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
-            <form onSubmit={handleUpdateProduct}>
-                <div style={{ marginBottom: "15px" }}>
-                    <select
-                        value={selectedTitle}
-                        onChange={(e) => {
-                            const title = e.target.value;
-                            setSelectedTitle(title);
-                            setMessage("");
-                            const item = cart.find((i) => i.title === title);
-                            setNewQuantity(item ? item.amount.toString() : "");
-                        }}
-                    >
-                        <option value="">Choose a product</option>
-                        {cart.map((item) => (
-                            <option key={item.title} value={item.title}>
-                                {item.title} (Current: {item.amount} {item.measurementType})
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                    {selectedCartItem && selectedProduct && (
+                        <div className="alert alert-info">
+                            <p>
+                                <strong>Product:</strong> {selectedCartItem.title}
+                            </p>
+                            <p>
+                                <strong>Current Quantity:</strong> {selectedCartItem.amount}{" "}
+                                {selectedCartItem.measurementType}
+                            </p>
+                            <p>
+                                <strong>Available in Stock:</strong> {selectedProduct.amount}{" "}
+                                {selectedProduct.measurementType}
+                            </p>
+                        </div>
+                    )}
 
-                {selectedCartItem && selectedProduct && (
-                    <div style={{ marginBottom: "15px" }}>
-                        <p>
-                            <strong>Product:</strong> {selectedCartItem.title}
-                        </p>
-                        <p>
-                            <strong>Current Quantity:</strong> {selectedCartItem.amount}{" "}
-                            {selectedCartItem.measurementType}
-                        </p>
-                        <p>
-                            <strong>Available in Stock:</strong> {selectedProduct.amount}{" "}
-                            {selectedProduct.measurementType}
-                        </p>
-
-                        <label>
-                            Enter new quantity:
+                    {selectedCartItem && selectedProduct && (
+                        <div className="form-group">
+                            <label>Enter new quantity:</label>
                             <input
                                 type="number"
                                 step={selectedCartItem.measurementType === "Kg" ? "0.01" : "1"}
@@ -185,27 +199,21 @@ const UpdateProductInCart = () => {
                                 value={newQuantity}
                                 onChange={(e) => setNewQuantity(e.target.value)}
                                 placeholder="Enter new quantity"
-                                style={{ marginLeft: "10px" }}
                             />
-                        </label>
+                        </div>
+                    )}
+
+                    <button type="submit" className="button button-primary" disabled={!selectedTitle}>
+                        Update Product
+                    </button>
+                </form>
+
+                {message && (
+                    <div className={`alert ${messageType === "error" ? "alert-error" : "alert-success"}`}>
+                        {message}
                     </div>
                 )}
-
-                <button type="submit" disabled={!selectedTitle}>
-                    Update Product
-                </button>
-            </form>
-
-            {message && (
-                <p
-                    style={{
-                        marginTop: "15px",
-                        color: messageType === "error" ? "red" : "green",
-                    }}
-                >
-                    {message}
-                </p>
-            )}
+            </div>
         </div>
     );
 };

@@ -83,81 +83,104 @@ const AddProduct = () => {
     const subcategoryOptions = category ? SUBCATEGORIES[category] : [];
 
     return (
-    <div>
-        <h2>Add Product</h2>
+    <div className="card">
+        <div className="card-header">
+            <h2>Add Product</h2>
+        </div>
+        <div className="card-body">
+            <form onSubmit={submission}>
+                <div className="form-group">
+                    <label>Title:</label>
+                    <input
+                        type="text"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                </div>
 
-        <form onSubmit={submission}>
-            <input
-                type="text"
-                placeholder="Title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
+                <div className="form-group">
+                    <label>Description:</label>
+                    <input
+                        type="text"
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </div>
 
-            <input
-                type="text"
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
+                <div className="form-group">
+                    <label>Category:</label>
+                    <select
+                        value={category}
+                        onChange={(e) => {
+                            setCategory(e.target.value);
+                            setSubcategory("");
+                        }}
+                    >
+                        <option value="" disabled>Select category</option>
+                        {Object.keys(SUBCATEGORIES).map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
+                    </select>
+                </div>
 
-            <select
-                value={category}
-                onChange={(e) => {
-                    setCategory(e.target.value);
-                    setSubcategory("");
-                }}
-            >
-                <option value="" disabled>Select category</option>
-                {Object.keys(SUBCATEGORIES).map((cat) => (<option key={cat} value={cat}>{cat}</option>))}
-            </select>
+                <div className="form-group">
+                    <label>Subcategory:</label>
+                    <select
+                        value={subcategory}
+                        onChange={(e) => setSubcategory(e.target.value)}
+                        disabled={!category}
+                    >
+                        <option value="" disabled>
+                            {category ? "Select subcategory" : "Pick a category first"}
+                        </option>
+                        {subcategoryOptions.map((sub) => (
+                            <option key={sub} value={sub}>{sub}</option>
+                        ))}
+                    </select>
+                </div>
 
-            <select
-                value={subcategory}
-                onChange={(e) => setSubcategory(e.target.value)}
-                disabled={!category}
-            >
-                <option value="" disabled>
-                    {category ? "Select subcategory" : "Pick a category first"}
-                </option>
-                {subcategoryOptions.map((sub) => (
-                    <option key={sub} value={sub}>{sub}</option>
-                ))}
-            </select>
+                <div className="form-group">
+                    <label>Price:</label>
+                    <input
+                        type="number"
+                        placeholder="Price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                </div>
 
-            <input
-                type="number"
-                placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-            />
+                <div className="form-group">
+                    <label>Measurement Type:</label>
+                    <select
+                      value={measurementType}
+                      onChange={(e) => setMeasurementType(e.target.value)}
+                    >
+                      <option value="" disabled>Select measurement type</option>
+                      <option value="Kg">Kg</option>
+                      <option value="Unit">Unit</option>
+                    </select>
+                </div>
 
-            <input
-                type="number"
-                placeholder={
-                    measurementType
-                    ? `Amount (${measurementType})`
-                    : "Amount"
-                }
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-            />
+                <div className="form-group">
+                    <label>Amount:</label>
+                    <input
+                        type="number"
+                        placeholder={
+                            measurementType
+                            ? `Amount (${measurementType})`
+                            : "Amount"
+                        }
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                    />
+                </div>
 
-            <select
-              value={measurementType}
-              onChange={(e) => setMeasurementType(e.target.value)}
-            >
-              <option value="" disabled>Select measurement type</option>
-              <option value="Kg">Kg</option>
-              <option value="Unit">Unit</option>
-            </select>
+                <button type="submit" className="button button-primary">Add Product</button>
 
-            <button type="submit">Add Product</button>
-
-            {/* Feedback messages */}
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            {success && <p style={{ color: "green" }}>Product added successfully!</p>}
-        </form>
+                {error && <div className="alert alert-error">{error}</div>}
+                {success && <div className="alert alert-success">Product added successfully!</div>}
+            </form>
+        </div>
     </div>
     );
 };

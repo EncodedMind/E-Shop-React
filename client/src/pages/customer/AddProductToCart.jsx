@@ -126,61 +126,69 @@ const AddProductToCart = () => {
 
     if (loading) {
         return (
-            <div>
-                <h2>Add Product to Cart</h2>
-                <p>Loading...</p>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Add Product to Cart</h2>
+                </div>
+                <div className="card-body">
+                    <div className="loading">Loading...</div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Add Product to Cart</h2>
+        <div className="card">
+            <div className="card-header">
+                <h2>Add Product to Cart</h2>
+            </div>
+            <div className="card-body">
+                <form onSubmit={handleAddToCart}>
+                    <div className="form-group">
+                        <label>Select a product:</label>
+                        <select
+                            value={selectedTitle}
+                            onChange={(e) => {
+                                setSelectedTitle(e.target.value);
+                                setMessage("");
+                                setQuantity("");
+                            }}
+                        >
+                            <option value="">Choose a product</option>
+                            {products.map((p) => {
+                                const isUnavailable = Math.abs(p.amount || 0) < 1e-6;
+                                return (
+                                    <option
+                                        key={p.title}
+                                        value={p.title}
+                                        disabled={isUnavailable}
+                                        title={isUnavailable ? "Product currently unavailable" : ""}
+                                    >
+                                        {p.title} {isUnavailable ? "(Unavailable)" : ""}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </div>
 
-            <form onSubmit={handleAddToCart}>
-                <div style={{ marginBottom: "15px" }}>
-                    <label>Select a product:</label>
-                    <select
-                        value={selectedTitle}
-                        onChange={(e) => {
-                            setSelectedTitle(e.target.value);
-                            setMessage("");
-                            setQuantity("");
-                        }}
-                        style={{ marginLeft: "10px" }}
-                    >
-                        <option value="">Choose a product</option>
-                        {products.map((p) => {
-                            const isUnavailable = Math.abs(p.amount || 0) < 1e-6;
-                            return (
-                                <option
-                                    key={p.title}
-                                    value={p.title}
-                                    disabled={isUnavailable}
-                                    title={isUnavailable ? "Product currently unavailable" : ""}
-                                >
-                                    {p.title} {isUnavailable ? "(Unavailable)" : ""}
-                                </option>
-                            );
-                        })}
-                    </select>
-                </div>
+                    {selectedProduct && Math.abs(selectedProduct.amount || 0) >= 1e-6 && (
+                        <div className="alert alert-info">
+                            <p>
+                                <strong>Product:</strong> {selectedProduct.title}
+                            </p>
+                            <p>
+                                <strong>Price:</strong> ${selectedProduct.price}
+                            </p>
+                            <p>
+                                <strong>Available Quantity:</strong>{" "}
+                                {selectedProduct.amount} {selectedProduct.measurementType}
+                            </p>
+                        </div>
+                    )}
 
-                {selectedProduct && Math.abs(selectedProduct.amount || 0) >= 1e-6 && (
-                    <div style={{ marginBottom: "15px" }}>
-                        <p>
-                            <strong>Product:</strong> {selectedProduct.title}
-                        </p>
-                        <p>
-                            <strong>Price:</strong> ${selectedProduct.price}
-                        </p>
-                        <p>
-                            <strong>Available Quantity:</strong>{" "}
-                            {selectedProduct.amount} {selectedProduct.measurementType}
-                        </p>
-
-                        <label>
-                            Quantity to add:
+                    {selectedProduct && Math.abs(selectedProduct.amount || 0) >= 1e-6 && (
+                        <div className="form-group">
+                            <label>Quantity to add:</label>
                             <input
                                 type="number"
                                 step={selectedProduct.measurementType === "Kg" ? "0.01" : "1"}
@@ -188,27 +196,21 @@ const AddProductToCart = () => {
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
                                 placeholder="Enter quantity"
-                                style={{ marginLeft: "10px" }}
                             />
-                        </label>
+                        </div>
+                    )}
+
+                    <button type="submit" className="button button-primary" disabled={!selectedTitle}>
+                        Add to Cart
+                    </button>
+                </form>
+
+                {message && (
+                    <div className={`alert ${messageType === "error" ? "alert-error" : "alert-success"}`}>
+                        {message}
                     </div>
                 )}
-
-                <button type="submit" disabled={!selectedTitle}>
-                    Add to Cart
-                </button>
-            </form>
-
-            {message && (
-                <p
-                    style={{
-                        marginTop: "15px",
-                        color: messageType === "error" ? "red" : "green",
-                    }}
-                >
-                    {message}
-                </p>
-            )}
+            </div>
         </div>
     );
 };

@@ -16,9 +16,16 @@ const Logout = ({ onLogout }) => {
   }, [countdown, onLogout]);
 
   return (
-    <div>
-      <h2>You have successfully logged out.</h2>
-      <p>Redirecting to home page in {countdown} second{countdown !== 1 ? "s" : ""}...</p>
+    <div className="card">
+      <div className="card-header">
+        <h2>Logout</h2>
+      </div>
+      <div className="card-body">
+        <div className="alert alert-success">
+          <p style={{ margin: 0 }}>You have successfully logged out.</p>
+        </div>
+        <p className="text-secondary">Redirecting to home page in {countdown} second{countdown !== 1 ? "s" : ""}...</p>
+      </div>
     </div>
   );
 };

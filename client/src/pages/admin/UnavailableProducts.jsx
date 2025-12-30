@@ -25,40 +25,44 @@ const UnavailableProducts = () => {
     );
 
     return (
-        <div>
-            <h2>Unavailable Products</h2>
-            {loading ? (
-                <p>Loading products...</p>
-            ) : unavailableProducts.length === 0 ? (
-                <p>No unavailable products found.</p>
-            ) : (
-                <table style={{ marginTop: "15px", width: "100%", borderCollapse: "collapse" }}>
-                    <thead>
-                        <tr style={{ backgroundColor: "#f0f0f0" }}>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Title</th>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Description</th>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Category</th>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Subcategory</th>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Price</th>
-                            <th style={{ border: "1px solid #ccc", padding: "8px" }}>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {unavailableProducts.map((p, idx) => (
-                            <tr key={idx}>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{p.title}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{p.description}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{p.category}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{p.subcategory}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>${p.price}</td>
-                                <td style={{ border: "1px solid #ccc", padding: "8px" }}>
-                                    {p.amount} {p.measurementType}
-                                </td>
+        <div className="card">
+            <div className="card-header">
+                <h2>Unavailable Products</h2>
+            </div>
+            <div className="card-body">
+                {loading ? (
+                    <div className="loading">Loading products...</div>
+                ) : unavailableProducts.length === 0 ? (
+                    <div className="alert alert-info">No unavailable products found.</div>
+                ) : (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Price</th>
+                                <th>Amount</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+                        </thead>
+                        <tbody>
+                            {unavailableProducts.map((p, idx) => (
+                                <tr key={idx}>
+                                    <td>{p.title}</td>
+                                    <td>{p.description}</td>
+                                    <td>{p.category}</td>
+                                    <td>{p.subcategory}</td>
+                                    <td>${p.price}</td>
+                                    <td>
+                                        {p.amount} {p.measurementType}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
         </div>
     );
 };

@@ -52,51 +52,63 @@ const Top5Products = () => {
 
     if (loading) {
         return (
-        <div>
-            <h3>Top 5 Products</h3>
-            <p>Loading...</p>
-        </div>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Top 5 Products</h2>
+                </div>
+                <div className="card-body">
+                    <div className="loading">Loading...</div>
+                </div>
+            </div>
         );
     }
 
     if (top5.length < 5) {
         return (
-        <div>
-            <h3>Top 5 Products</h3>
-            <p>Not enough orders were made.</p>
-        </div>
+            <div className="card">
+                <div className="card-header">
+                    <h2>Top 5 Products</h2>
+                </div>
+                <div className="card-body">
+                    <div className="alert alert-info">Not enough orders were made.</div>
+                </div>
+            </div>
         );
     }
 
     return (
-        <div>
-        <h3>Top 5 Products</h3>
-        <table style={{ marginTop: "15px", width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-            <tr style={{ backgroundColor: "#f0f0f0" }}>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Title</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Description</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Category</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Subcategory</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Price</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Amount</th>
-                <th style={{ border: "1px solid #ccc", padding: "8px" }}>Orders</th>
-            </tr>
-            </thead>
-            <tbody>
-            {top5.map(({ product, count }, idx) => (
-                <tr key={idx}>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{product.title}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{product.description}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{product.category}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{product.subcategory}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>${product.price}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{product.amount} {product.measurementType}</td>
-                <td style={{ border: "1px solid #ccc", padding: "8px" }}>{count}</td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
+        <div className="card">
+            <div className="card-header">
+                <h2>Top 5 Products</h2>
+            </div>
+            <div className="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Subcategory</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Orders</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {top5.map(({ product, count }, idx) => (
+                            <tr key={idx}>
+                                <td>{product.title}</td>
+                                <td>{product.description}</td>
+                                <td>{product.category}</td>
+                                <td>{product.subcategory}</td>
+                                <td>${product.price}</td>
+                                <td>{product.amount} {product.measurementType}</td>
+                                <td><span className="badge badge-primary">{count}</span></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

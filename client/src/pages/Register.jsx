@@ -39,73 +39,103 @@ const Register = ({ setPage }) => {
 
     if (success) {
         return (
-            <div>
-                <p>
-                    Thanks for signing up! Click{" "}
-                    <a href="#" onClick={(e) => { e.preventDefault(); setPage("LOGIN"); }}>
-                        here
-                    </a>{" "}
-                    to login.
-                </p>
+            <div className="page-container">
+                <div className="content-wrapper">
+                    <div className="container">
+                        <div className="card" style={{ maxWidth: '500px', margin: '0 auto' }}>
+                            <div className="alert alert-success">
+                                <h3 className="mt-0">Registration Successful!</h3>
+                                <p className="mb-0">
+                                    Thanks for signing up! Click{" "}
+                                    <a href="#" onClick={(e) => { e.preventDefault(); setPage("LOGIN"); }}>
+                                        here
+                                    </a>{" "}
+                                    to login.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div className="page-container">
+            <div className="content-wrapper">
+                <div className="container">
+                    <div className="card" style={{ maxWidth: '500px', margin: '0 auto' }}>
+                        <div className="card-header">
+                            <h2>Create an Account</h2>
+                            <p className="text-secondary">Fill in your details to register</p>
+                        </div>
+                        <div className="card-body">
+                            <form onSubmit={handleRegister}>
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Choose a username"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-            <form onSubmit={handleRegister}>
-                <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => {
-                    setUsername(e.target.value);
-                }}
-                />
+                                <div className="form-group">
+                                    <label>Password</label>
+                                    <input
+                                        type="password"
+                                        placeholder="Choose a password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => {
-                    setPassword(e.target.value);
-                }}
-                />
+                                <div className="form-group">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                        <input
+                                            type="checkbox"
+                                            checked={isAdmin}
+                                            onChange={(e) => setIsAdmin(e.target.checked)}
+                                            style={{ width: 'auto' }}
+                                        />
+                                        Register as Administrator
+                                    </label>
+                                </div>
 
-                <label>
-                    <input
-                        type="checkbox"
-                        checked={isAdmin}
-                        onChange={(e) => setIsAdmin(e.target.checked)}
-                    />
-                    Admin?
-                </label>
+                                <button type="submit" className="button-primary" style={{ width: '100%' }}>Register</button>
+                            </form>
 
-                <button type="submit">Register</button>
-            </form>
+                            {error === "user-exists" && (
+                                <div className="alert alert-error mt-md">
+                                    Username <strong>{errorUser}</strong> already exists. Click{" "}
+                                    <a
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setError("");
+                                            setPage("LOGIN");
+                                        }}
+                                    >
+                                        here
+                                    </a>{" "}
+                                    to login
+                                </div>
+                            )}
 
-            {/* Error message rendered under the form */}
-            {error === "user-exists" && (
-                <p>
-                Username {errorUser} already exists. Click{" "}
-                <a
-                    href="#"
-                    onClick={(e) => {
-                    e.preventDefault();
-                    setError("");
-                    setPage("LOGIN");
-                    }}
-                >
-                    here
-                </a>{" "}
-                to login
-                </p>
-            )}
+                            {error === "fetch-failed" && (
+                                <div className="alert alert-error mt-md">Could not register. Try again later.</div>
+                            )}
 
-            {error === "fetch-failed" && <p>Could not register. Try again later.</p>}
-
+                            <div className="text-center mt-lg">
+                                <button className="button-outline" onClick={() => setPage("HOME")}>Back to Home</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 
