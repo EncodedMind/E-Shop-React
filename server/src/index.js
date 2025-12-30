@@ -18,7 +18,7 @@ const app = express();
 // app.use(cors());
 const allowedOrigins = [
   "http://localhost:5173", // for Vite dev server
-  "https://encodedmind-eshop.netlify.app" // for Netlify frontend
+  "https://encodedmind-eshop.netlify.app", // for Netlify frontend
   "https://e-shop-react-p935.onrender.com" // for Render backend
 ];
 
