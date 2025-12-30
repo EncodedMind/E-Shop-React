@@ -15,7 +15,23 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173", // for Vite dev server
+  "https://encodedmind-eshop.netlify.app" // for Netlify frontend
+];
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // to allow non-browser requests
+    if(allowedOrigins.includes(origin)){
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS not allowed for this origin'));
+    }
+  }
+}));
+
 app.use(express.json());
 
 app.use("/health", healthRouter);
