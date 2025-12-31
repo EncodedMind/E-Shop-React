@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_URL } from "../../../config";
 
 const ViewOrderHistory = () => {
     const [orderHistory, setOrderHistory] = useState([]);
@@ -10,7 +11,7 @@ const ViewOrderHistory = () => {
             const user = localStorage.getItem("currentUser");
             if (!user) return;
             try {
-                const res = await fetch(`http://localhost:4000/api/orders/${encodeURIComponent(user)}`);
+                const res = await fetch(`${API_URL}/api/orders/${encodeURIComponent(user)}`);
                 const data = await res.json();
                 setOrderHistory(data || []);
             } catch (err) {

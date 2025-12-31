@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../../config";
 
 const Register = ({ setPage }) => {
 
@@ -14,7 +15,7 @@ const Register = ({ setPage }) => {
         setError("");
 
         try {
-            const res = await fetch("http://localhost:4000/api/users", {
+            const res = await fetch(`${API_URL}/api/users`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, password, isAdmin }),

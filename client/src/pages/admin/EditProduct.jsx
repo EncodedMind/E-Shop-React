@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { API_URL } from "../../../config";
 
 const SUBCATEGORIES = {
     Food: ["Fruit", "Vegetable", "Meat", "Seafood", "Dairy", "Sweet", "Baked"],
@@ -25,7 +26,7 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch("http://localhost:4000/api/products");
+                const res = await fetch(`${API_URL}/api/products`);
                 const data = await res.json();
                 setProducts(data);
             } catch (err) {
@@ -88,7 +89,7 @@ const EditProduct = () => {
         }
 
         try {
-            const res = await fetch(`http://localhost:4000/api/products/${encodeURIComponent(selectedTitle)}`, {
+            const res = await fetch(`${API_URL}/api/products/${encodeURIComponent(selectedTitle)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

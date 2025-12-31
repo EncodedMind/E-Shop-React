@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
+import { API_URL } from "../../../config";
 
 const SearchProduct = () => {
     const [products, setProducts] = useState([]);
@@ -6,7 +7,7 @@ const SearchProduct = () => {
         useEffect(() => {
             const fetchProducts = async () => {
                 try {
-                    const res = await fetch("http://localhost:4000/api/products");
+                    const res = await fetch(`${API_URL}/api/products`);
                     const data = await res.json();
                     setProducts(data);
                 } catch (err) {

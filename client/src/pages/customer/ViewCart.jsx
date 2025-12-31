@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { API_URL } from "../../../config";
 
 const ViewCart = () => {
     const [cart, setCart] = useState([]);
@@ -9,7 +10,7 @@ const ViewCart = () => {
             const user = localStorage.getItem("currentUser");
             if (!user) return;
             try {
-                const res = await fetch(`http://localhost:4000/api/cart/${encodeURIComponent(user)}`);
+                const res = await fetch(`${API_URL}/api/cart/${encodeURIComponent(user)}`);
                 const data = await res.json();
                 setCart(data || []);
             } catch (err) {

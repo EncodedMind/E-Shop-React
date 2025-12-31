@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_URL } from "../../../config";
 
 const RemoveProduct = () => {
     const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const RemoveProduct = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch("http://localhost:4000/api/products");
+                const res = await fetch(`${API_URL}/api/products`);
                 const data = await res.json();
                 setProducts(data);
             } catch (err) {
@@ -26,7 +27,7 @@ const RemoveProduct = () => {
         if (!selectedTitle) return;
 
         try {
-            const res = await fetch(`http://localhost:4000/api/products/${encodeURIComponent(selectedTitle)}`, {
+            const res = await fetch(`${API_URL}/api/products/${encodeURIComponent(selectedTitle)}`, {
                 method: "DELETE",
             });
             if (res.status === 404) {

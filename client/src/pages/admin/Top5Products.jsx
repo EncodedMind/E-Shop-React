@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
+import { API_URL } from "../../../config";
 
 const Top5Products = () => {
     const [products, setProducts] = useState([]);
@@ -9,8 +10,8 @@ const Top5Products = () => {
         const fetchData = async () => {
             try {
                 const [prodRes, ordersRes] = await Promise.all([
-                    fetch("http://localhost:4000/api/products"),
-                    fetch("http://localhost:4000/api/product-orders"),
+                    fetch(`${API_URL}/api/products`),
+                    fetch(`${API_URL}/api/product-orders`),
                 ]);
                 const productsData = await prodRes.json();
                 const ordersData = await ordersRes.json();

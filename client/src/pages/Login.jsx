@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../../config";
 
 const Login = ({ setPage, setUsername }) => {
 
@@ -12,7 +13,7 @@ const Login = ({ setPage, setUsername }) => {
         setError("");
 
         try {
-            const res = await fetch("http://localhost:4000/api/users");
+            const res = await fetch(`${API_URL}/api/users`);
             if (!res.ok) {
                 throw new Error("Failed to load users");
             }

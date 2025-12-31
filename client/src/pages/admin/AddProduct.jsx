@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { API_URL } from "../../../config";
 
 const SUBCATEGORIES = {
     Food: ["Fruit", "Vegetable", "Meat", "Seafood", "Dairy", "Sweet", "Baked"],
@@ -42,7 +43,7 @@ const AddProduct = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:4000/api/products", {
+            const res = await fetch(`${API_URL}/api/products`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

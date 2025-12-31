@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { API_URL } from "../../../config";
 
 const RemoveProductFromCart = () => {
     const [cart, setCart] = useState([]);
@@ -14,8 +15,8 @@ const RemoveProductFromCart = () => {
             if (!user) return;
             try {
                 const [cartRes, prodRes] = await Promise.all([
-                    fetch(`http://localhost:4000/api/cart/${encodeURIComponent(user)}`),
-                    fetch("http://localhost:4000/api/products"),
+                    fetch(`${API_URL}/api/cart/${encodeURIComponent(user)}`),
+                    fetch(`${API_URL}/api/products`),
                 ]);
                 const cartData = await cartRes.json();
                 const prodData = await prodRes.json();
@@ -57,7 +58,7 @@ const RemoveProductFromCart = () => {
             }
 
             const updatedAmount = (prod.amount || 0) + cartItemQuantity;
-            const updateRes = await fetch(`http://localhost:4000/api/products/${encodeURIComponent(selectedTitle)}`, {
+            const updateRes = await fetch(`${API_URL}/api/products/${encodeURIComponent(selectedTitle)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ amount: updatedAmount }),
@@ -71,7 +72,7 @@ const RemoveProductFromCart = () => {
 
             const updatedCart = cart.filter((item) => item.title !== selectedTitle);
             const user = localStorage.getItem("currentUser");
-            await fetch(`http://localhost:4000/api/cart/${encodeURIComponent(user)}`, {
+            await fetch(`${API_URL}/api/cart/${encodeURIComponent(user)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updatedCart),

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { API_URL } from "../../../config";
 
 const PRODUCT_DISCOUNT = 0.10; // 10%
 const CATEGORY_DISCOUNT = 0.05; // 5%
@@ -29,10 +30,10 @@ const CompleteOrder = () => {
             }
             try {
                 const [cartRes, ordersRes, discRes, usageRes] = await Promise.all([
-                    fetch(`http://localhost:4000/api/cart/${encodeURIComponent(user)}`),
-                    fetch(`http://localhost:4000/api/orders/${encodeURIComponent(user)}`),
-                    fetch("http://localhost:4000/api/products/discounts"),
-                    fetch(`http://localhost:4000/api/discount-usage/${encodeURIComponent(user)}`),
+                    fetch(`${API_URL}/api/cart/${encodeURIComponent(user)}`),
+                    fetch(`${API_URL}/api/orders/${encodeURIComponent(user)}`),
+                    fetch(`${API_URL}/api/products/discounts`),
+                    fetch(`${API_URL}/api/discount-usage/${encodeURIComponent(user)}`),
                 ]);
                 const cartData = await cartRes.json();
                 const ordersData = await ordersRes.json();
@@ -190,13 +191,13 @@ const CompleteOrder = () => {
         });
 
         try {
-            const postOrder = fetch(`http://localhost:4000/api/orders/${encodeURIComponent(user)}`, {
+            const postOrder = fetch(`${API_URL}/api/orders/${encodeURIComponent(user)}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newOrder),
             });
 
-            const updateUsage = fetch(`http://localhost:4000/api/discount-usage/${encodeURIComponent(user)}`, {
+            const updateUsage = fetch(`${API_URL}/api/discount-usage/${encodeURIComponent(user)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -208,7 +209,7 @@ const CompleteOrder = () => {
 
             const incrementOrders = Promise.all(
                 orderDetails.items.map((item) =>
-                    fetch("http://localhost:4000/api/product-orders/increment", {
+                    fetch(`${API_URL}/api/product-orders/increment`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ title: item.title, count: 1 }),
@@ -216,7 +217,7 @@ const CompleteOrder = () => {
                 )
             );
 
-            const clearCart = fetch(`http://localhost:4000/api/cart/${encodeURIComponent(user)}`, {
+            const clearCart = fetch(`${API_URL}/api/cart/${encodeURIComponent(user)}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify([]),
